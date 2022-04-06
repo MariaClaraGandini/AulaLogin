@@ -23,6 +23,15 @@ namespace Login
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddAuthentication("Autenticacao").AddCookie("Autenticacao", option =>
+            {
+                option.LoginPath = "/Login/Entrar";
+                option.AccessDeniedPath = "/Login/ops";
+
+                //Autentificação de cookies, se não tem cookies vai redirecionar a tela de login.
+                //AccessDen - tela de "não permitido" ops= nome da action
+                //pagina que quero usar no login, adicionar controller para redirecionar.
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
